@@ -820,7 +820,7 @@ window.addEventListener('resize', function(){
       title: [
       {
         left: 'center',
-        text: city+' 이상 값이'
+        text: city+' 이상 점수'
       }
     ],
         tooltip: {
@@ -888,7 +888,7 @@ window.addEventListener('resize', function(){
           myChart.setOption(option);
           myChart.on('click', function (params) {
             document.getElementById("myHeader").innerHTML = "<?php echo $location ?> 날씨 정보<br>"+params.name;
-            document.getElementById("myHeader1").innerHTML = "각 도시 "+params.name+" 이상 값이";
+            document.getElementById("myHeader1").innerHTML = "각 도시 "+params.name+" 이상 점수";
             creatTable(infor(params.name));
             draw2(infor2(params.name));
             city='<?php echo $location ?>';

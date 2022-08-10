@@ -13,8 +13,9 @@ import prettytable as pt
 
 url = 'https://h5.133.cn/hangban/vue/dynamic/hotFlight?tabName=specialFlights'
 option = webdriver.ChromeOptions()
-option.add_argument('headless')
-driver = webdriver.Edge(executable_path=r'F:\avwc\msedgedriver.exe',capabilities={"ms:edgeOptions": {'extensions': [],'args': ['--headless','--disable-gpu']}})
+option.add_argument("--headless")
+option.add_argument('--no-sandbox')
+driver = webdriver.Chrome(executable_path='/media/ubuntu/Newdisk/xyo/admin/aacc_80/wwwroot/chromedriver',options=option)
 driver.get(url)
 time.sleep(4)
 shi = driver.page_source.encode('utf-8')

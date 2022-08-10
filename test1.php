@@ -530,7 +530,7 @@ if (option && typeof option === 'object') {
 draw(['0000-00-00'],[0],city); 
 setInterval(function setusers() {
             $.ajax(getting);
-            draw(dateList,valueList,"<?php echo $location ?>");},3000);
+            draw(dateList,valueList,"<?php echo $location ?>");},5000);
 
 
     

@@ -457,7 +457,7 @@ table,table tr th, table tr td { font-weight: bold;border:0px solid #0094ff; }
 <div id="container" style="width: 100%;height: 250px;width: auto"></div>
 <p id="myHeader1" style="float: left;width: 100%;line-height: 45px;text-align: center;">각 도시 이상 값이</p>
 <div id="container2" style="width: 100%;height: 250px;width: auto"></div>
-  <p id="myHeader" style="float: left;width: 100%;line-height: 45px;text-align: center;"><?php echo $location ?> 날씨 정보</p>
+  <p id="myHeader" style="float: left;width: 100%;line-height: 45px;text-align: center;"><?php echo $location ?> 날씨의 정보</p>
   <table class="btb" style=width:100% height="100">
  
          <thead>

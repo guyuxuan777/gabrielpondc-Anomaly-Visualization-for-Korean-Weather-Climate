@@ -775,7 +775,7 @@ window.addEventListener('resize', function(){
    <script type="text/javascript">
     var btn2;
     var btn3;
-    var city='City';
+    var city='Loading';
     var data = [];
     var dateList,valueList;
     var newdataList;

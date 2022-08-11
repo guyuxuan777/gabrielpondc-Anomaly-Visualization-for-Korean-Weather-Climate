@@ -455,6 +455,8 @@ table,table tr th, table tr td { font-weight: bold;border:0px solid #0094ff; }
   <span>확인</span>
 </button>
 <div id="container" style="width: 100%;height: 250px;width: auto"></div>
+<p id="myHeader2" style="float: left;width: 100%;line-height: 45px;text-align: center;">온도</p>
+<div id="container3" style="width: 100%;height: 250px;width: auto"></div>
 <p id="myHeader1" style="float: left;width: 100%;line-height: 45px;text-align: center;">각 도시 이상 값이</p>
 <div id="container2" style="width: 100%;height: 250px;width: auto"></div>
   <p id="myHeader" style="float: left;width: 100%;line-height: 45px;text-align: center;"><?php echo $location ?> 날씨의 정보</p>
@@ -536,11 +538,7 @@ Chung-Ang University, Korean
     echo "<script type=\"text/javascript\"> weburl='./qqq1.php?name=$location&begin=$begin&end=$end';</script>";
   }
   ?>
-  <?php
-    
-    echo "<script type=\"text/javascript\"> weburl2='./qqq5.php?begin=$begin&end=$end&date=$date';</script>";
-    
-  ?>
+ 
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9567e1e6c68a020d2e38a3c687c1b4db" ></script>
     <script>
       var widthdd = document.body.clientWidth * document.body.clientHeight;
@@ -778,6 +776,8 @@ window.addEventListener('resize', function(){
     var city='Loading';
     var data = [];
     var dateList,valueList;
+    var wendulist;
+    var wenduvaluelist;
     var newdataList;
     var newdataList2;
     var data2=[];
@@ -805,6 +805,27 @@ window.addEventListener('resize', function(){
                 }
                 
             };
+    var getting3={
+                type: "get",
+                async: false,
+                url: './qqq6.php?name=<?php echo $location ?>&begin=<?php echo $begin ?>&end=<?php echo $end ?>',
+                data2: {},
+                dataType: "json",
+                success: function(result){
+                    
+                    if(result){
+                        data2=result;
+                        wendulist = data2.map(function (item) { return item[0];});
+                        wenduvaluelist = data2.map(function (item) {return item[1];});
+                    }
+
+                },
+                error: function(errmsg) {
+                    
+                }
+                
+            };
+      $.ajax(getting3);
 
     function draw(dateList,valueList,city){
     var dom = document.getElementById('container');
@@ -906,6 +927,14 @@ window.addEventListener('resize', function(){
       echo "draw(['0000-00-00'],[0],city);";
     }
     ?>
+     <?php 
+    if ($begin) {
+      echo "$.ajax(getting3);";
+      echo "draw3(wendulist,wenduvaluelist,'".$location."');";
+    }else{
+      echo "draw3(['0000-00-00'],[0],city);";
+    }
+    ?>
 
 
     /* window.addEventListener("touchstart",function(){ $.ajax(getting);
@@ -918,6 +947,7 @@ window.addEventListener('resize', function(){
     setInterval(function setusers() {
                 $.ajax(getting);
                 draw(dateList,valueList,"<?php echo $location ?>");},86400000);
+   
     function acc(){
               date = document.getElementById("start").value;
               temp = new Date(document.getElementById("end").value);
@@ -1075,6 +1105,90 @@ window.addEventListener('resize', function(){
     
     
     }
+    function draw3(wendulist,wenduvaluelist,city){
+    var dom = document.getElementById('container3');
+    var myChart = echarts.init(dom, null, {
+      renderer: 'canvas',
+      useDirtyRect: false
+    });
+    var app = {};
+    var option;
+    // prettier-ignore
+    option = {
+
+      title: [
+      {
+        left: 'center',
+        text: city+' 이상 점수'
+      }
+    ],
+        tooltip: {
+          trigger: 'axis'
+        },
+        xAxis: [
+        {
+        type: "category",
+          gridIndex: 0,
+          data: wendulist
+        }
+      ],
+        yAxis:[{
+            type: 'value',
+          gridIndex: 0,
+          axisLabel: {
+            formatter: '{value}'
+          }
+            }
+        ],
+        dataZoom: [{
+                  textStyle: {
+                      color: '#8392A5'
+                  },
+                  start:0,
+                  xAxisIndex: [0], // 对应网格的索引
+                  handleIcon: 'M10.7,11.9v-1.3H9.3v1.3c-4.9,0.3-8.8,4.4-8.8,9.4c0,5,3.9,9.1,8.8,9.4v1.3h1.3v-1.3c4.9-0.3,8.8-4.4,8.8-9.4C19.5,16.3,15.6,12.2,10.7,11.9z M13.3,24.4H6.7V23h6.6V24.4z M13.3,19.6H6.7v-1.4h6.6V19.6z',
+                  handleSize: '50%',
+                  left:"center",                           //组件离容器左侧的距离,'left', 'center', 'right','20%'
+                  top:"90%",                                //组件离容器上侧的距离,'top', 'middle', 'bottom','20%'
+                  right:"auto",                             //组件离容器右侧的距离,'20%'
+                  bottom:"auto",
+                  orient:"horizontal",
+                  dataBackground: {
+                      areaStyle: {
+                          color: '#8392A5'
+                      },
+                      lineStyle: {
+                          opacity: 0.8,
+                          color: '#8392A5'
+                      }
+                  }
+              }, {
+                  zoomOnMouseWheel:true,                   //如何触发缩放。可选值为：true：表示不按任何功能键，鼠标滚轮能触发缩放。false：表示鼠标滚轮不能触发缩放。'shift'：表示按住 shift 和鼠标滚轮能触发缩放。'ctrl'：表示按住 ctrl 和鼠标滚轮能触发缩放。'alt'：表示按住 alt 和鼠标滚轮能触发缩放。
+                  moveOnMouseMove:true,
+                  type: 'inside'
+              }],
+        series: [
+          {
+            name: '이상 값이',
+            type: 'line',
+            data: wenduvaluelist,
+            markPoint: {
+              data: [
+                { type: 'max', name: 'Max' },
+                { type: 'min', name: 'Min' }
+              ]
+            }
+          }
+        ]
+      }
+      if (option && typeof option === 'object') {
+        myChart.setOption(option);
+    }
+  }
+    draw3(wendulist,wenduvaluelist,"<?php echo $location ?>");
+    setInterval(function setusers() {
+                $.ajax(getting3);
+                draw3(wendulist,wenduvaluelist,"<?php echo $location ?>");},86400000);
 
       </script>
       <script>

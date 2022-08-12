@@ -16,9 +16,9 @@ import time
 def wendu(name,begin,end):
     db_connection_str = 'mysql+pymysql://root:caucse1234@caucse.club/virus'
     db_connection = create_engine(db_connection_str)
-    df = pd.read_sql('SELECT test.city,weather.qiwen FROM weather,test where weather.KID=test.KID and test.city="'+name+'" and weather.date >="'+begin+'" AND weather.date <"'+end+'"', con=db_connection)
+    df = pd.read_sql('SELECT test.city,weather.haimianqiya FROM weather,test where weather.KID=test.KID and test.city="'+name+'" and weather.date >="'+begin+'" AND weather.date <"'+end+'"', con=db_connection)
     df1 = df.iloc[:,1:]
-    list=df1['qiwen'].values.tolist()
+    list=df1['haimianqiya'].values.tolist()
     sum=0
     avg=[]
     for i in range(int(len(list)/24)):
@@ -32,5 +32,3 @@ if __name__ == '__main__':
     a=wendu(str(sys.argv[1]),sys.argv[2],sys.argv[3])
     for i in range(0,len(a)):
         print(a[i])
-  
-

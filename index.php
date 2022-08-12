@@ -455,8 +455,20 @@ table,table tr th, table tr td { font-weight: bold;border:0px solid #0094ff; }
   <span>확인</span>
 </button>
 <div id="container" style="width: 100%;height: 250px;width: auto"></div>
-<p id="myHeader2" style="float: left;width: 100%;line-height: 45px;text-align: center;">온도</p>
+<p id="myHeader2" style="float: left;width: 100%;line-height: 45px;text-align: center;">기온(°C)</p>
 <div id="container3" style="width: 100%;height: 250px;width: auto"></div>
+<p id="myHeader3" style="float: left;width: 100%;line-height: 45px;text-align: center;">습도(%)</p>
+<div id="container4" style="width: 100%;height: 250px;width: auto"></div>
+<p id="myHeader4" style="float: left;width: 100%;line-height: 45px;text-align: center;">증기압(hPa)</p>
+<div id="container5" style="width: 100%;height: 250px;width: auto"></div>
+<p id="myHeader5" style="float: left;width: 100%;line-height: 45px;text-align: center;">이슬점온도(°C)</p>
+<div id="container6" style="width: 100%;height: 250px;width: auto"></div>
+<p id="myHeader6" style="float: left;width: 100%;line-height: 45px;text-align: center;">현지기압(hPa)</p>
+<div id="container7" style="width: 100%;height: 250px;width: auto"></div>
+<p id="myHeader7" style="float: left;width: 100%;line-height: 45px;text-align: center;">해면기압(hPa)</p>
+<div id="container8" style="width: 100%;height: 250px;width: auto"></div>
+<p id="myHeader8" style="float: left;width: 100%;line-height: 45px;text-align: center;">지면온도(°C)</p>
+<div id="container9" style="width: 100%;height: 250px;width: auto"></div>
 <p id="myHeader1" style="float: left;width: 100%;line-height: 45px;text-align: center;">각 도시 이상 값이</p>
 <div id="container2" style="width: 100%;height: 250px;width: auto"></div>
   <p id="myHeader" style="float: left;width: 100%;line-height: 45px;text-align: center;"><?php echo $location ?> 날씨의 정보</p>
@@ -785,6 +797,18 @@ window.addEventListener('resize', function(){
     var dataqqq;
     var qqq;
     var wendu,shidu;
+    var shidulist;
+    var shiduvaluelist;
+    var zhengqiyalist;
+    var zhengqiyavaluelist;
+    var ludianwendulist;
+    var ludianwenduvaluelist;
+    var dangdiqiyalist;
+    var dangdiqiyavaluelist;
+    var haimianqiyalist;
+    var haimianqiyavaluelist;
+    var dimianwendu;
+    var dimianwendulist;
     var getting={
                 type: "get",
                 async: false,
@@ -826,6 +850,132 @@ window.addEventListener('resize', function(){
                 
             };
       $.ajax(getting3);
+      var getting4={
+                type: "get",
+                async: false,
+                url: './qqq7.php?name=<?php echo $location ?>&begin=<?php echo $begin ?>&end=<?php echo $end ?>',
+                data2: {},
+                dataType: "json",
+                success: function(result){
+                    
+                    if(result){
+                        data2=result;
+                        shidulist = data2.map(function (item) { return item[0];});
+                        shiduvaluelist = data2.map(function (item) {return item[1];});
+                    }
+
+                },
+                error: function(errmsg) {
+                    
+                }
+                
+            };
+      $.ajax(getting4);
+      var getting5={
+                type: "get",
+                async: false,
+                url: './qqq8.php?name=<?php echo $location ?>&begin=<?php echo $begin ?>&end=<?php echo $end ?>',
+                data2: {},
+                dataType: "json",
+                success: function(result){
+                    
+                    if(result){
+                        data2=result;
+                        zhengqiyalist = data2.map(function (item) { return item[0];});
+                        zhengqiyavaluelist = data2.map(function (item) {return item[1];});
+                    }
+
+                },
+                error: function(errmsg) {
+                    
+                }
+                
+            };
+      $.ajax(getting5);
+      var getting6={
+                type: "get",
+                async: false,
+                url: './qqq9.php?name=<?php echo $location ?>&begin=<?php echo $begin ?>&end=<?php echo $end ?>',
+                data2: {},
+                dataType: "json",
+                success: function(result){
+                    
+                    if(result){
+                        data2=result;
+                        ludianwendulist = data2.map(function (item) { return item[0];});
+                        ludianwenduvaluelist = data2.map(function (item) {return item[1];});
+                    }
+
+                },
+                error: function(errmsg) {
+                    
+                }
+                
+            };
+      $.ajax(getting6);
+      var getting7={
+                type: "get",
+                async: false,
+                url: './qqq10.php?name=<?php echo $location ?>&begin=<?php echo $begin ?>&end=<?php echo $end ?>',
+                data2: {},
+                dataType: "json",
+                success: function(result){
+                    
+                    if(result){
+                        data2=result;
+                        dangdiqiyalist = data2.map(function (item) { return item[0];});
+                        dangdiqiyavaluelist = data2.map(function (item) {return item[1];});
+                    }
+
+                },
+                error: function(errmsg) {
+                    
+                }
+                
+            };
+      $.ajax(getting7);
+      var getting8={
+                type: "get",
+                async: false,
+                url: './qqq11.php?name=<?php echo $location ?>&begin=<?php echo $begin ?>&end=<?php echo $end ?>',
+                data2: {},
+                dataType: "json",
+                success: function(result){
+                    
+                    if(result){
+                        data2=result;
+                        haimianqiyalist = data2.map(function (item) { return item[0];});
+                        haimianqiyavaluelist = data2.map(function (item) {return item[1];});
+                    }
+
+                },
+                error: function(errmsg) {
+                    
+                }
+                
+            };
+      $.ajax(getting8);
+      var getting9={
+                type: "get",
+                async: false,
+                url: './qqq12.php?name=<?php echo $location ?>&begin=<?php echo $begin ?>&end=<?php echo $end ?>',
+                data2: {},
+                dataType: "json",
+                success: function(result){
+                    
+                    if(result){
+                        data2=result;
+                        dimianwendulist = data2.map(function (item) { return item[0];});
+                        dimianwenduvaluelist = data2.map(function (item) {return item[1];});
+                    }
+
+                },
+                error: function(errmsg) {
+                    
+                }
+                
+            };
+      $.ajax(getting9);
 
     function draw(dateList,valueList,city){
     var dom = document.getElementById('container');
@@ -1105,90 +1255,613 @@ window.addEventListener('resize', function(){
     
     
     }
-    function draw3(wendulist,wenduvaluelist,city){
-    var dom = document.getElementById('container3');
-    var myChart = echarts.init(dom, null, {
-      renderer: 'canvas',
-      useDirtyRect: false
-    });
-    var app = {};
-    var option;
-    // prettier-ignore
-    option = {
+    function draw3(shidulist,shiduvaluelist,city){
+          var dom = document.getElementById('container3');
+          var myChart = echarts.init(dom, null, {
+            renderer: 'canvas',
+            useDirtyRect: false
+          });
+          var app = {};
+          var option;
+          // prettier-ignore
+          option = {
 
-      title: [
-      {
-        left: 'center',
-        text: city+' 온도'
-      }
-    ],
-        tooltip: {
-          trigger: 'axis'
-        },
-        xAxis: [
-        {
-        type: "category",
-          gridIndex: 0,
-          data: wendulist
-        }
-      ],
-        yAxis:[{
-            type: 'value',
-          gridIndex: 0,
-          axisLabel: {
-            formatter: '{value}'
-          }
+            title: [
+            {
+              left: 'center',
+              text: city+' 기온(°C)'
             }
-        ],
-        dataZoom: [{
-                  textStyle: {
-                      color: '#8392A5'
-                  },
-                  start:0,
-                  xAxisIndex: [0], // 对应网格的索引
-                  handleIcon: 'M10.7,11.9v-1.3H9.3v1.3c-4.9,0.3-8.8,4.4-8.8,9.4c0,5,3.9,9.1,8.8,9.4v1.3h1.3v-1.3c4.9-0.3,8.8-4.4,8.8-9.4C19.5,16.3,15.6,12.2,10.7,11.9z M13.3,24.4H6.7V23h6.6V24.4z M13.3,19.6H6.7v-1.4h6.6V19.6z',
-                  handleSize: '50%',
-                  left:"center",                           //组件离容器左侧的距离,'left', 'center', 'right','20%'
-                  top:"90%",                                //组件离容器上侧的距离,'top', 'middle', 'bottom','20%'
-                  right:"auto",                             //组件离容器右侧的距离,'20%'
-                  bottom:"auto",
-                  orient:"horizontal",
-                  dataBackground: {
-                      areaStyle: {
-                          color: '#8392A5'
-                      },
-                      lineStyle: {
-                          opacity: 0.8,
-                          color: '#8392A5'
-                      }
+          ],
+              tooltip: {
+                trigger: 'axis'
+              },
+              xAxis: [
+              {
+              type: "category",
+                gridIndex: 0,
+                data: wendulist
+              }
+            ],
+              yAxis:[{
+                  type: 'value',
+                gridIndex: 0,
+                axisLabel: {
+                  formatter: '{value}'
+                }
                   }
-              }, {
-                  zoomOnMouseWheel:true,                   //如何触发缩放。可选值为：true：表示不按任何功能键，鼠标滚轮能触发缩放。false：表示鼠标滚轮不能触发缩放。'shift'：表示按住 shift 和鼠标滚轮能触发缩放。'ctrl'：表示按住 ctrl 和鼠标滚轮能触发缩放。'alt'：表示按住 alt 和鼠标滚轮能触发缩放。
-                  moveOnMouseMove:true,
-                  type: 'inside'
-              }],
-        series: [
-          {
-            name: '이상 값이',
-            type: 'line',
-            data: wenduvaluelist,
-            markPoint: {
-              data: [
-                { type: 'max', name: 'Max' },
-                { type: 'min', name: 'Min' }
+              ],
+              dataZoom: [{
+                        textStyle: {
+                            color: '#8392A5'
+                        },
+                        start:0,
+                        xAxisIndex: [0], // 对应网格的索引
+                        handleIcon: 'M10.7,11.9v-1.3H9.3v1.3c-4.9,0.3-8.8,4.4-8.8,9.4c0,5,3.9,9.1,8.8,9.4v1.3h1.3v-1.3c4.9-0.3,8.8-4.4,8.8-9.4C19.5,16.3,15.6,12.2,10.7,11.9z M13.3,24.4H6.7V23h6.6V24.4z M13.3,19.6H6.7v-1.4h6.6V19.6z',
+                        handleSize: '50%',
+                        left:"center",                           //组件离容器左侧的距离,'left', 'center', 'right','20%'
+                        top:"90%",                                //组件离容器上侧的距离,'top', 'middle', 'bottom','20%'
+                        right:"auto",                             //组件离容器右侧的距离,'20%'
+                        bottom:"auto",
+                        orient:"horizontal",
+                        dataBackground: {
+                            areaStyle: {
+                                color: '#8392A5'
+                            },
+                            lineStyle: {
+                                opacity: 0.8,
+                                color: '#8392A5'
+                            }
+                        }
+                    }, {
+                        zoomOnMouseWheel:true,                   //如何触发缩放。可选值为：true：表示不按任何功能键，鼠标滚轮能触发缩放。false：表示鼠标滚轮不能触发缩放。'shift'：表示按住 shift 和鼠标滚轮能触发缩放。'ctrl'：表示按住 ctrl 和鼠标滚轮能触发缩放。'alt'：表示按住 alt 和鼠标滚轮能触发缩放。
+                        moveOnMouseMove:true,
+                        type: 'inside'
+                    }],
+              series: [
+                {
+                  name: '이상 값이',
+                  type: 'line',
+                  data: wenduvaluelist,
+                  markPoint: {
+                    data: [
+                      { type: 'max', name: 'Max' },
+                      { type: 'min', name: 'Min' }
+                    ]
+                  }
+                }
               ]
             }
+            if (option && typeof option === 'object') {
+              myChart.setOption(option);
           }
-        ]
-      }
-      if (option && typeof option === 'object') {
-        myChart.setOption(option);
-    }
-  }
-    draw3(wendulist,wenduvaluelist,"<?php echo $location ?>");
-    setInterval(function setusers() {
-                $.ajax(getting3);
-                draw3(wendulist,wenduvaluelist,"<?php echo $location ?>");},86400000);
+        }
+          draw3(wendulist,wenduvaluelist,"<?php echo $location ?>");
+          setInterval(function setusers() {
+                      $.ajax(getting3);
+                      draw3(wendulist,wenduvaluelist,"<?php echo $location ?>");},86400000);
+
+    function draw4(wendulist,shiduvaluelist,city){
+          var dom = document.getElementById('container4');
+          var myChart = echarts.init(dom, null, {
+            renderer: 'canvas',
+            useDirtyRect: false
+          });
+          var app = {};
+          var option;
+          // prettier-ignore
+          option = {
+
+            title: [
+            {
+              left: 'center',
+              text: city+' 습도(%)'
+            }
+          ],
+              tooltip: {
+                trigger: 'axis'
+              },
+              xAxis: [
+              {
+              type: "category",
+                gridIndex: 0,
+                data: wendulist
+              }
+            ],
+              yAxis:[{
+                  type: 'value',
+                gridIndex: 0,
+                axisLabel: {
+                  formatter: '{value}'
+                }
+                  }
+              ],
+              dataZoom: [{
+                        textStyle: {
+                            color: '#8392A5'
+                        },
+                        start:0,
+                        xAxisIndex: [0], // 对应网格的索引
+                        handleIcon: 'M10.7,11.9v-1.3H9.3v1.3c-4.9,0.3-8.8,4.4-8.8,9.4c0,5,3.9,9.1,8.8,9.4v1.3h1.3v-1.3c4.9-0.3,8.8-4.4,8.8-9.4C19.5,16.3,15.6,12.2,10.7,11.9z M13.3,24.4H6.7V23h6.6V24.4z M13.3,19.6H6.7v-1.4h6.6V19.6z',
+                        handleSize: '50%',
+                        left:"center",                           //组件离容器左侧的距离,'left', 'center', 'right','20%'
+                        top:"90%",                                //组件离容器上侧的距离,'top', 'middle', 'bottom','20%'
+                        right:"auto",                             //组件离容器右侧的距离,'20%'
+                        bottom:"auto",
+                        orient:"horizontal",
+                        dataBackground: {
+                            areaStyle: {
+                                color: '#8392A5'
+                            },
+                            lineStyle: {
+                                opacity: 0.8,
+                                color: '#8392A5'
+                            }
+                        }
+                    }, {
+                        zoomOnMouseWheel:true,                   //如何触发缩放。可选值为：true：表示不按任何功能键，鼠标滚轮能触发缩放。false：表示鼠标滚轮不能触发缩放。'shift'：表示按住 shift 和鼠标滚轮能触发缩放。'ctrl'：表示按住 ctrl 和鼠标滚轮能触发缩放。'alt'：表示按住 alt 和鼠标滚轮能触发缩放。
+                        moveOnMouseMove:true,
+                        type: 'inside'
+                    }],
+              series: [
+                {
+                  name: '이상 값이',
+                  type: 'line',
+                  data: shiduvaluelist,
+                  markPoint: {
+                    data: [
+                      { type: 'max', name: 'Max' },
+                      { type: 'min', name: 'Min' }
+                    ]
+                  }
+                }
+              ]
+            }
+            if (option && typeof option === 'object') {
+              myChart.setOption(option);
+          }
+        }
+        draw4(shidulist,shiduvaluelist,"<?php echo $location ?>");
+        setInterval(function setusers() {
+                $.ajax(getting4);
+                draw4(shidulist,shiduvaluelistt,"<?php echo $location ?>");},86400000); 
+
+
+
+        function draw5(zhengqiyalist,zhengqiyavaluelist,city){
+              var dom = document.getElementById('container5');
+              var myChart = echarts.init(dom, null, {
+                renderer: 'canvas',
+                useDirtyRect: false
+              });
+              var app = {};
+              var option;
+              // prettier-ignore
+              option = {
+
+                title: [
+                {
+                  left: 'center',
+                  text: city+' 증기압(hPa)'
+                }
+              ],
+                  tooltip: {
+                    trigger: 'axis'
+                  },
+                  xAxis: [
+                  {
+                  type: "category",
+                    gridIndex: 0,
+                    data: zhengqiyalist
+                  }
+                ],
+                  yAxis:[{
+                      type: 'value',
+                    gridIndex: 0,
+                    axisLabel: {
+                      formatter: '{value}'
+                    }
+                      }
+                  ],
+                  dataZoom: [{
+                            textStyle: {
+                                color: '#8392A5'
+                            },
+                            start:0,
+                            xAxisIndex: [0], // 对应网格的索引
+                            handleIcon: 'M10.7,11.9v-1.3H9.3v1.3c-4.9,0.3-8.8,4.4-8.8,9.4c0,5,3.9,9.1,8.8,9.4v1.3h1.3v-1.3c4.9-0.3,8.8-4.4,8.8-9.4C19.5,16.3,15.6,12.2,10.7,11.9z M13.3,24.4H6.7V23h6.6V24.4z M13.3,19.6H6.7v-1.4h6.6V19.6z',
+                            handleSize: '50%',
+                            left:"center",                           //组件离容器左侧的距离,'left', 'center', 'right','20%'
+                            top:"90%",                                //组件离容器上侧的距离,'top', 'middle', 'bottom','20%'
+                            right:"auto",                             //组件离容器右侧的距离,'20%'
+                            bottom:"auto",
+                            orient:"horizontal",
+                            dataBackground: {
+                                areaStyle: {
+                                    color: '#8392A5'
+                                },
+                                lineStyle: {
+                                    opacity: 0.8,
+                                    color: '#8392A5'
+                                }
+                            }
+                        }, {
+                            zoomOnMouseWheel:true,                   //如何触发缩放。可选值为：true：表示不按任何功能键，鼠标滚轮能触发缩放。false：表示鼠标滚轮不能触发缩放。'shift'：表示按住 shift 和鼠标滚轮能触发缩放。'ctrl'：表示按住 ctrl 和鼠标滚轮能触发缩放。'alt'：表示按住 alt 和鼠标滚轮能触发缩放。
+                            moveOnMouseMove:true,
+                            type: 'inside'
+                        }],
+                  series: [
+                    {
+                      name: '이상 값이',
+                      type: 'line',
+                      data: zhengqiyavaluelist,
+                      markPoint: {
+                        data: [
+                          { type: 'max', name: 'Max' },
+                          { type: 'min', name: 'Min' }
+                        ]
+                      }
+                    }
+                  ]
+                }
+                if (option && typeof option === 'object') {
+                  myChart.setOption(option);
+              }
+            }
+          draw5(zhengqiyalist,zhengqiyavaluelist,"<?php echo $location ?>");
+          setInterval(function setusers() {
+                      $.ajax(getting5);
+                      draw5(zhengqiyalist,zhengqiyavaluelistt,"<?php echo $location ?>");},86400000); 
+      
+
+
+
+      function draw6(ludianwendulist,ludianwenduvaluelist,city){
+              var dom = document.getElementById('container6');
+              var myChart = echarts.init(dom, null, {
+                renderer: 'canvas',
+                useDirtyRect: false
+              });
+              var app = {};
+              var option;
+              // prettier-ignore
+              option = {
+
+                title: [
+                {
+                  left: 'center',
+                  text: city+' 이슬점온도(°C)'
+                }
+              ],
+                  tooltip: {
+                    trigger: 'axis'
+                  },
+                  xAxis: [
+                  {
+                  type: "category",
+                    gridIndex: 0,
+                    data: ludianwendulist
+                  }
+                ],
+                  yAxis:[{
+                      type: 'value',
+                    gridIndex: 0,
+                    axisLabel: {
+                      formatter: '{value}'
+                    }
+                      }
+                  ],
+                  dataZoom: [{
+                            textStyle: {
+                                color: '#8392A5'
+                            },
+                            start:0,
+                            xAxisIndex: [0], // 对应网格的索引
+                            handleIcon: 'M10.7,11.9v-1.3H9.3v1.3c-4.9,0.3-8.8,4.4-8.8,9.4c0,5,3.9,9.1,8.8,9.4v1.3h1.3v-1.3c4.9-0.3,8.8-4.4,8.8-9.4C19.5,16.3,15.6,12.2,10.7,11.9z M13.3,24.4H6.7V23h6.6V24.4z M13.3,19.6H6.7v-1.4h6.6V19.6z',
+                            handleSize: '50%',
+                            left:"center",                           //组件离容器左侧的距离,'left', 'center', 'right','20%'
+                            top:"90%",                                //组件离容器上侧的距离,'top', 'middle', 'bottom','20%'
+                            right:"auto",                             //组件离容器右侧的距离,'20%'
+                            bottom:"auto",
+                            orient:"horizontal",
+                            dataBackground: {
+                                areaStyle: {
+                                    color: '#8392A5'
+                                },
+                                lineStyle: {
+                                    opacity: 0.8,
+                                    color: '#8392A5'
+                                }
+                            }
+                        }, {
+                            zoomOnMouseWheel:true,                   //如何触发缩放。可选值为：true：表示不按任何功能键，鼠标滚轮能触发缩放。false：表示鼠标滚轮不能触发缩放。'shift'：表示按住 shift 和鼠标滚轮能触发缩放。'ctrl'：表示按住 ctrl 和鼠标滚轮能触发缩放。'alt'：表示按住 alt 和鼠标滚轮能触发缩放。
+                            moveOnMouseMove:true,
+                            type: 'inside'
+                        }],
+                  series: [
+                    {
+                      name: '이상 값이',
+                      type: 'line',
+                      data: ludianwenduvaluelist,
+                      markPoint: {
+                        data: [
+                          { type: 'max', name: 'Max' },
+                          { type: 'min', name: 'Min' }
+                        ]
+                      }
+                    }
+                  ]
+                }
+                if (option && typeof option === 'object') {
+                  myChart.setOption(option);
+              }
+            }
+          draw6(ludianwendulist,ludianwenduvaluelist,"<?php echo $location ?>");
+          setInterval(function setusers() {
+                      $.ajax(getting6);
+                      draw6(ludianwendulist,ludianwenduvaluelist,"<?php echo $location ?>");},86400000); 
+
+
+      
+
+      function draw7(wendulist,wenduvaluelist,city){
+              var dom = document.getElementById('container7');
+              var myChart = echarts.init(dom, null, {
+                renderer: 'canvas',
+                useDirtyRect: false
+              });
+              var app = {};
+              var option;
+              // prettier-ignore
+              option = {
+
+                title: [
+                {
+                  left: 'center',
+                  text: city+' 현지기압(hPa)'
+                }
+              ],
+                  tooltip: {
+                    trigger: 'axis'
+                  },
+                  xAxis: [
+                  {
+                  type: "category",
+                    gridIndex: 0,
+                    data: wendulist
+                  }
+                ],
+                  yAxis:[{
+                      type: 'value',
+                    gridIndex: 0,
+                    axisLabel: {
+                      formatter: '{value}'
+                    }
+                      }
+                  ],
+                  dataZoom: [{
+                            textStyle: {
+                                color: '#8392A5'
+                            },
+                            start:0,
+                            xAxisIndex: [0], // 对应网格的索引
+                            handleIcon: 'M10.7,11.9v-1.3H9.3v1.3c-4.9,0.3-8.8,4.4-8.8,9.4c0,5,3.9,9.1,8.8,9.4v1.3h1.3v-1.3c4.9-0.3,8.8-4.4,8.8-9.4C19.5,16.3,15.6,12.2,10.7,11.9z M13.3,24.4H6.7V23h6.6V24.4z M13.3,19.6H6.7v-1.4h6.6V19.6z',
+                            handleSize: '50%',
+                            left:"center",                           //组件离容器左侧的距离,'left', 'center', 'right','20%'
+                            top:"90%",                                //组件离容器上侧的距离,'top', 'middle', 'bottom','20%'
+                            right:"auto",                             //组件离容器右侧的距离,'20%'
+                            bottom:"auto",
+                            orient:"horizontal",
+                            dataBackground: {
+                                areaStyle: {
+                                    color: '#8392A5'
+                                },
+                                lineStyle: {
+                                    opacity: 0.8,
+                                    color: '#8392A5'
+                                }
+                            }
+                        }, {
+                            zoomOnMouseWheel:true,                   //如何触发缩放。可选值为：true：表示不按任何功能键，鼠标滚轮能触发缩放。false：表示鼠标滚轮不能触发缩放。'shift'：表示按住 shift 和鼠标滚轮能触发缩放。'ctrl'：表示按住 ctrl 和鼠标滚轮能触发缩放。'alt'：表示按住 alt 和鼠标滚轮能触发缩放。
+                            moveOnMouseMove:true,
+                            type: 'inside'
+                        }],
+                  series: [
+                    {
+                      name: '이상 값이',
+                      type: 'line',
+                      data: wenduvaluelist,
+                      markPoint: {
+                        data: [
+                          { type: 'max', name: 'Max' },
+                          { type: 'min', name: 'Min' }
+                        ]
+                      }
+                    }
+                  ]
+                }
+                if (option && typeof option === 'object') {
+                  myChart.setOption(option);
+              }
+            }
+          draw7(dangdiqiyalist,dangdiqiyavaluelist,"<?php echo $location ?>");
+          setInterval(function setusers() {
+                      $.ajax(getting7);
+                      draw7(dangdiqiyalist,dangdiqiyavaluelist,"<?php echo $location ?>");},86400000); 
+
+
+
+        function draw8(wendulist,wenduvaluelist,city){
+              var dom = document.getElementById('container8');
+              var myChart = echarts.init(dom, null, {
+                renderer: 'canvas',
+                useDirtyRect: false
+              });
+              var app = {};
+              var option;
+              // prettier-ignore
+              option = {
+
+                title: [
+                {
+                  left: 'center',
+                  text: city+' 해면기압(hPa)'
+                }
+              ],
+                  tooltip: {
+                    trigger: 'axis'
+                  },
+                  xAxis: [
+                  {
+                  type: "category",
+                    gridIndex: 0,
+                    data: wendulist
+                  }
+                ],
+                  yAxis:[{
+                      type: 'value',
+                    gridIndex: 0,
+                    axisLabel: {
+                      formatter: '{value}'
+                    }
+                      }
+                  ],
+                  dataZoom: [{
+                            textStyle: {
+                                color: '#8392A5'
+                            },
+                            start:0,
+                            xAxisIndex: [0], // 对应网格的索引
+                            handleIcon: 'M10.7,11.9v-1.3H9.3v1.3c-4.9,0.3-8.8,4.4-8.8,9.4c0,5,3.9,9.1,8.8,9.4v1.3h1.3v-1.3c4.9-0.3,8.8-4.4,8.8-9.4C19.5,16.3,15.6,12.2,10.7,11.9z M13.3,24.4H6.7V23h6.6V24.4z M13.3,19.6H6.7v-1.4h6.6V19.6z',
+                            handleSize: '50%',
+                            left:"center",                           //组件离容器左侧的距离,'left', 'center', 'right','20%'
+                            top:"90%",                                //组件离容器上侧的距离,'top', 'middle', 'bottom','20%'
+                            right:"auto",                             //组件离容器右侧的距离,'20%'
+                            bottom:"auto",
+                            orient:"horizontal",
+                            dataBackground: {
+                                areaStyle: {
+                                    color: '#8392A5'
+                                },
+                                lineStyle: {
+                                    opacity: 0.8,
+                                    color: '#8392A5'
+                                }
+                            }
+                        }, {
+                            zoomOnMouseWheel:true,                   //如何触发缩放。可选值为：true：表示不按任何功能键，鼠标滚轮能触发缩放。false：表示鼠标滚轮不能触发缩放。'shift'：表示按住 shift 和鼠标滚轮能触发缩放。'ctrl'：表示按住 ctrl 和鼠标滚轮能触发缩放。'alt'：表示按住 alt 和鼠标滚轮能触发缩放。
+                            moveOnMouseMove:true,
+                            type: 'inside'
+                        }],
+                  series: [
+                    {
+                      name: '이상 값이',
+                      type: 'line',
+                      data: wenduvaluelist,
+                      markPoint: {
+                        data: [
+                          { type: 'max', name: 'Max' },
+                          { type: 'min', name: 'Min' }
+                        ]
+                      }
+                    }
+                  ]
+                }
+                if (option && typeof option === 'object') {
+                  myChart.setOption(option);
+              }
+            }
+          draw8(haimianqiyalist,haimianqiyavaluelist,"<?php echo $location ?>");
+          setInterval(function setusers() {
+                      $.ajax(getting8);
+                      draw8(haimianqiyalist,haimianqiyavaluelist,"<?php echo $location ?>");},86400000); 
+
+
+
+
+    function draw9(wendulist,wenduvaluelist,city){
+              var dom = document.getElementById('container9');
+              var myChart = echarts.init(dom, null, {
+                renderer: 'canvas',
+                useDirtyRect: false
+              });
+              var app = {};
+              var option;
+              // prettier-ignore
+              option = {
+
+                title: [
+                {
+                  left: 'center',
+                  text: city+' 지면온도(°C)'
+                }
+              ],
+                  tooltip: {
+                    trigger: 'axis'
+                  },
+                  xAxis: [
+                  {
+                  type: "category",
+                    gridIndex: 0,
+                    data: wendulist
+                  }
+                ],
+                  yAxis:[{
+                      type: 'value',
+                    gridIndex: 0,
+                    axisLabel: {
+                      formatter: '{value}'
+                    }
+                      }
+                  ],
+                  dataZoom: [{
+                            textStyle: {
+                                color: '#8392A5'
+                            },
+                            start:0,
+                            xAxisIndex: [0], // 对应网格的索引
+                            handleIcon: 'M10.7,11.9v-1.3H9.3v1.3c-4.9,0.3-8.8,4.4-8.8,9.4c0,5,3.9,9.1,8.8,9.4v1.3h1.3v-1.3c4.9-0.3,8.8-4.4,8.8-9.4C19.5,16.3,15.6,12.2,10.7,11.9z M13.3,24.4H6.7V23h6.6V24.4z M13.3,19.6H6.7v-1.4h6.6V19.6z',
+                            handleSize: '50%',
+                            left:"center",                           //组件离容器左侧的距离,'left', 'center', 'right','20%'
+                            top:"90%",                                //组件离容器上侧的距离,'top', 'middle', 'bottom','20%'
+                            right:"auto",                             //组件离容器右侧的距离,'20%'
+                            bottom:"auto",
+                            orient:"horizontal",
+                            dataBackground: {
+                                areaStyle: {
+                                    color: '#8392A5'
+                                },
+                                lineStyle: {
+                                    opacity: 0.8,
+                                    color: '#8392A5'
+                                }
+                            }
+                        }, {
+                            zoomOnMouseWheel:true,                   //如何触发缩放。可选值为：true：表示不按任何功能键，鼠标滚轮能触发缩放。false：表示鼠标滚轮不能触发缩放。'shift'：表示按住 shift 和鼠标滚轮能触发缩放。'ctrl'：表示按住 ctrl 和鼠标滚轮能触发缩放。'alt'：表示按住 alt 和鼠标滚轮能触发缩放。
+                            moveOnMouseMove:true,
+                            type: 'inside'
+                        }],
+                  series: [
+                    {
+                      name: '이상 값이',
+                      type: 'line',
+                      data: wenduvaluelist,
+                      markPoint: {
+                        data: [
+                          { type: 'max', name: 'Max' },
+                          { type: 'min', name: 'Min' }
+                        ]
+                      }
+                    }
+                  ]
+                }
+                if (option && typeof option === 'object') {
+                  myChart.setOption(option);
+              }
+            }
+          draw9(dimianwendulist,dimianwenduvaluelist,"<?php echo $location ?>");
+          setInterval(function setusers() {
+                      $.ajax(getting9);
+                      draw9(dimianwendulist,dimianwenduvaluelist,"<?php echo $location ?>");},86400000); 
 
       </script>
       <script>

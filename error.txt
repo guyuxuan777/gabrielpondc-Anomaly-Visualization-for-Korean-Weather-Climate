@@ -1,4 +1,4 @@
 Traceback (most recent call last):
-  File "/media/ubuntu/Newdisk/xyo/admin/aacc_80/wwwroot/wendu.py", line 32, in <module>
+  File "/media/ubuntu/Newdisk/xyo/admin/aacc_80/wwwroot/dimianwendu.py", line 32, in <module>
     a=wendu(str(sys.argv[1]),sys.argv[2],sys.argv[3])
 IndexError: list index out of range

@@ -1119,7 +1119,7 @@ window.addEventListener('resize', function(){
       title: [
       {
         left: 'center',
-        text: city+' 이상 점수'
+        text: city+' 온도'
       }
     ],
         tooltip: {

@@ -436,7 +436,7 @@ table,table tr th, table tr td { font-weight: bold;border:0px solid #0094ff; }
     </style>
 
 <body>
-<script type="text/javascript" src="http://cdn.bootcdn.net/ajax/libs/echarts/5.3.2/echarts.common.js"></script>
+<script type="text/javascript" src="//fastly.jsdelivr.net/npm/echarts@5.3.3/dist/echarts.min.js"></script>
 <div style="width:100%;height:100%;position:relative;" >    
 <div id='left'>
   
@@ -849,7 +849,6 @@ window.addEventListener('resize', function(){
                 }
                 
             };
-      $.ajax(getting3);
       var getting4={
                 type: "get",
                 async: false,
@@ -870,7 +869,6 @@ window.addEventListener('resize', function(){
                 }
                 
             };
-      $.ajax(getting4);
       var getting5={
                 type: "get",
                 async: false,
@@ -891,7 +889,6 @@ window.addEventListener('resize', function(){
                 }
                 
             };
-      $.ajax(getting5);
       var getting6={
                 type: "get",
                 async: false,
@@ -912,7 +909,6 @@ window.addEventListener('resize', function(){
                 }
                 
             };
-      $.ajax(getting6);
       var getting7={
                 type: "get",
                 async: false,
@@ -933,7 +929,6 @@ window.addEventListener('resize', function(){
                 }
                 
             };
-      $.ajax(getting7);
       var getting8={
                 type: "get",
                 async: false,
@@ -954,7 +949,6 @@ window.addEventListener('resize', function(){
                 }
                 
             };
-      $.ajax(getting8);
       var getting9={
                 type: "get",
                 async: false,
@@ -975,7 +969,6 @@ window.addEventListener('resize', function(){
                 }
                 
             };
-      $.ajax(getting9);
 
     function draw(dateList,valueList,city){
     var dom = document.getElementById('container');
@@ -1075,14 +1068,6 @@ window.addEventListener('resize', function(){
       echo "draw(dateList,valueList,'".$location."');";
     }else{
       echo "draw(['0000-00-00'],[0],city);";
-    }
-    ?>
-     <?php 
-    if ($begin) {
-      echo "$.ajax(getting3);";
-      echo "draw3(wendulist,wenduvaluelist,'".$location."');";
-    }else{
-      echo "draw3(['0000-00-00'],[0],city);";
     }
     ?>
 
@@ -1335,11 +1320,8 @@ window.addEventListener('resize', function(){
               myChart.setOption(option);
           }
         }
-          draw3(wendulist,wenduvaluelist,"<?php echo $location ?>");
-          setInterval(function setusers() {
-                      $.ajax(getting3);
-                      draw3(wendulist,wenduvaluelist,"<?php echo $location ?>");},86400000);
-
+        $.ajax(getting3);
+        draw3(wendulist,wenduvaluelist,"<?php echo $location ?>");
     function draw4(wendulist,shiduvaluelist,city){
           var dom = document.getElementById('container4');
           var myChart = echarts.init(dom, null, {

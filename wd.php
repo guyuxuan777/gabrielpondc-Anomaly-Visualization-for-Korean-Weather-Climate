@@ -16,20 +16,10 @@ $db_selected=@mysqli_connect(DB_HOST,DB_USER,DB_PASSWORD,DB_NAME) OR die('Could 
   { 
     die ("Can\'t use  " ); 
   } 
-$sql1 = "SELECT DATE_FORMAT(weather.date,'%Y-%m-%d') time FROM test,weather where test.KID=weather.KID and weather.date >='$begin' AND weather.date < '$end' group by time";
-$result1 = mysqli_query($dbc,$sql1); 
 $sql = 'SELECT weather.qiwen FROM weather,test where weather.KID=test.KID and test.city= "'.$name.'" and weather.date>="'.$begin.'" AND weather.date < "'.$end.'"';
 $result = mysqli_query($dbc,$sql); 
 $arr=mysqli_fetch_all($result);
-$array1= array();
-$time=array();
-while ($row = mysqli_fetch_row($result1))
-{ 
-  array_push($time,$row);  
-  
-  //数组赋值
- 
-}
+
 $arrayavg= array();
 for ($i=0;$i<count($arr)/24;$i++){
     $sum=0;
@@ -38,10 +28,5 @@ for ($i=0;$i<count($arr)/24;$i++){
     }
     $arrayavg[]= $sum/24;
   }
-for ($i=0;$i<count($time);$i++){
-    $array1[] = [$time[$i][0],$arrayavg[$i]];
-  }
-$data = json_encode($array1);
-echo $data;
-
+print_r ($arrayavg);
 ?>

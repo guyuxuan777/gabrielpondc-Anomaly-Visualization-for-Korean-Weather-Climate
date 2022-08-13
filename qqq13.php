@@ -5,7 +5,7 @@ set_time_limit(10000);
 $name=$_GET['name'];
 $start_time=$_GET['begin'];
 $end_time=$_GET['end'];
-$cmd=$set_charset.'/usr/bin/python3 /media/ubuntu/Newdisk/xyo/admin/aacc_80/wwwroot/ludianwendu.py '.$name.' '.$start_time.' '.$end_time.' 2> error.txt';
+$cmd=$set_charset.'/usr/bin/python3 /media/ubuntu/Newdisk/xyo/admin/aacc_80/wwwroot/dimianwendu.py '.$name.' '.$start_time.' '.$end_time.' 2> error.txt';
 $l = exec($cmd,$res,$ret);
 
 DEFINE ('DB_USER','root');
@@ -24,12 +24,15 @@ $db_selected=@mysqli_connect(DB_HOST,DB_USER,DB_PASSWORD,DB_NAME) OR die('Could 
   // mysqli_query("SET NAMES utf8");  
   // mysqli_query()
   $sql = "SELECT DATE_FORMAT(weather.date,'%Y-%m-%d') time FROM test,weather where test.KID=weather.KID and weather.date >='$start_time' AND weather.date < '$end_time' group by time";
+  $sql1 = "SELECT weather.dangdiqiya FROM test,weather where test.KID=weather.KID and weather.date >='$start_time' AND weather.date < '$end_time'";
   $result = mysqli_query($dbc,$sql); 
+  $result1 = mysqli_query($dbc,$sql1); 
   //定义变量json存储值
   $data="";
   $array= array();
   $array=$res;
   $time=array();
+  $time1=array();
   class emp{
     public $time;
     public $value;
@@ -42,11 +45,31 @@ $db_selected=@mysqli_connect(DB_HOST,DB_USER,DB_PASSWORD,DB_NAME) OR die('Could 
     //数组赋值
    
   }
+  while ($row = mysqli_fetch_row($result1))
+  { 
+    array_push($time1,$row);  
+    
+    //数组赋值
+   
+  }
+  $sum=0;
   for ($i=0;$i<count($time);$i++){
     $array1[] = [$time[$i][0],floatval($array[$i])];
   }
+
+  $n=count($time1)/24
+  //$arrayavg=array();
+  //for ($i=0;$i<count($time1)/24;$i++){
+    //$sum=0;
+    //for ($j=0;$j<24;$j++){
+       // $sum=$sum+$time1[$j+($i*24)];
+    //}
+    //array_push($arrayavg,$sum/24);
+
+ //}
+
  
 $data = json_encode($array1);
-echo $data;
+print_r ($n);
 
 ?>

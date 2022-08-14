@@ -20,7 +20,25 @@ $sql1 = "SELECT DATE_FORMAT(weather.date,'%Y-%m-%d') time FROM test,weather wher
 $result1 = mysqli_query($dbc,$sql1); 
 $sql = 'SELECT weather.qiwen FROM weather,test where weather.KID=test.KID and test.city= "'.$name.'" and weather.date>="'.$begin.'" AND weather.date < "'.$end.'"';
 $result = mysqli_query($dbc,$sql); 
+$sqlshidu = 'SELECT weather.shidu FROM weather,test where weather.KID=test.KID and test.city= "'.$name.'" and weather.date>="'.$begin.'" AND weather.date < "'.$end.'"';
+$resultshidu = mysqli_query($dbc,$sqlshidu); 
+$sqlzhengqiya = 'SELECT weather.zhengqiya FROM weather,test where weather.KID=test.KID and test.city= "'.$name.'" and weather.date>="'.$begin.'" AND weather.date < "'.$end.'"';
+$resultzhengqiya = mysqli_query($dbc,$sqlzhengqiya);
+$sqlludianwendu = 'SELECT weather.ludianwendu FROM weather,test where weather.KID=test.KID and test.city= "'.$name.'" and weather.date>="'.$begin.'" AND weather.date < "'.$end.'"';
+$resultludianwendu = mysqli_query($dbc,$sqlludianwendu);
+$sqldangdiqiya = 'SELECT weather.dangdiqiya FROM weather,test where weather.KID=test.KID and test.city= "'.$name.'" and weather.date>="'.$begin.'" AND weather.date < "'.$end.'"';
+$resultdangdiqiya = mysqli_query($dbc,$sqldangdiqiya);
+$sqlhaimianqiya = 'SELECT weather.haimianqiya FROM weather,test where weather.KID=test.KID and test.city= "'.$name.'" and weather.date>="'.$begin.'" AND weather.date < "'.$end.'"';
+$resulthaimianqiya = mysqli_query($dbc,$sqlhaimianqiya);
+$sqldimianqiya = 'SELECT weather.dimianqiya FROM weather,test where weather.KID=test.KID and test.city= "'.$name.'" and weather.date>="'.$begin.'" AND weather.date < "'.$end.'"';
+$resultdimianqiya = mysqli_query($dbc,$sqldimianqiya);
 $arr=mysqli_fetch_all($result);
+$arrzhengqiya=mysqli_fetch_all($resultzhengqiya);
+$arrshidu=mysqli_fetch_all($resultshidu);
+$arrludianwendu=mysqli_fetch_all($resultludianwendu);
+$arrdangdiqiya=mysqli_fetch_all($resultdangdiqiya);
+$arrhaimianqiya=mysqli_fetch_all($resulthaimianqiya);
+$arrdimianqiya=mysqli_fetch_all($resultdimianqiya);
 $array1= array();
 $time=array();
 while ($row = mysqli_fetch_row($result1))
@@ -38,8 +56,56 @@ for ($i=0;$i<count($arr)/24;$i++){
     }
     $arrayavg[]= $sum/24;
   }
+$arrayavgshidu= array();
+for ($i=0;$i<count($arrshidu)/24;$i++){
+      $sumshidu=0;
+      for ($j=0;$j<24;$j++){
+          $sumshidu=$sumshidu+$arrshidu[$j+($i*24)][0];
+      }
+      $arrayavgshidu[]= $sumshidu/24;
+    }
+$arrayavgzhengqiya= array();
+for ($i=0;$i<count($arrzhengqiya)/24;$i++){
+      $sumzhengqiya=0;
+      for ($j=0;$j<24;$j++){
+          $sumzhengqiya=$sumzhengqiya+$arrzhengqiya[$j+($i*24)][0];
+          }
+          $arrayavgzhengqiya[]= $sumzhengqiya/24;
+        }
+$arrayavgludianwendu= array();
+for ($i=0;$i<count($arrludianwendu)/24;$i++){
+        $sumludianwendu=0;
+       for ($j=0;$j<24;$j++){
+          $sumludianwendu=$sumludianwendu+$arrludianwendu[$j+($i*24)][0];
+          }
+          $arrayavgludianwendu[]= $sumludianwendu/24;
+         }
+$arrayavgdangdiqiya= array();
+for ($i=0;$i<count($arrdangdiqiya)/24;$i++){
+        $sumdangdiqiya=0;
+        for ($j=0;$j<24;$j++){
+          $sumdangdiqiya=$sumdangdiqiya+$arrdangdiqiya[$j+($i*24)][0];
+          }
+          $arrayavgdangdiqiya[]= $sumdangdiqiya/24;
+        }
+$arrayavghaimianqiya= array();
+for ($i=0;$i<count($arrhaimianqiya)/24;$i++){
+        $sumhaimianqiya=0;
+        for ($j=0;$j<24;$j++){
+          $sumhaimianqiya=$sumhaimianqiya+$arrhaimianqiya[$j+($i*24)][0];
+          }
+          $arrayavghaimianqiya[]= $sumhaimianqiya/24;
+        }
+$arrayavgdimianqiya= array();
+for ($i=0;$i<count($arrdimianqiya)/24;$i++){
+          $sumdimianqiya=0;
+          for ($j=0;$j<24;$j++){
+            $sumdimianqiya=$sumdimianqiya+$arrdimianqiya[$j+($i*24)][0];
+          }
+            $arrayavgdimianqiya[]= $sumdimianqiya/24;
+        }
 for ($i=0;$i<count($time);$i++){
-    $array1[] = [$time[$i][0],$arrayavg[$i]];
+    $array1[] = [$time[$i][0],$arrayavg[$i],$arrayavgshidu[$i],$arrayavgzhengqiya[$i],$arrayavgludianwendu[$i],$arrayavgdangdiqiya[$i],$arrayavghaimianqiya[$i],$arrayavgdimianqiya[$i]];
   }
 $data = json_encode($array1);
 echo $data;

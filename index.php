@@ -797,18 +797,12 @@ window.addEventListener('resize', function(){
     var dataqqq;
     var qqq;
     var wendu,shidu;
-    var shidulist;
     var shiduvaluelist;
-    var zhengqiyalist;
     var zhengqiyavaluelist;
-    var ludianwendulist;
     var ludianwenduvaluelist;
-    var dangdiqiyalist;
     var dangdiqiyavaluelist;
-    var haimianqiyalist;
     var haimianqiyavaluelist;
-    var dimianwendu;
-    var dimianwendulist;
+    var dimianwenduvaluelist;
     var getting={
                 type: "get",
                 async: false,
@@ -841,6 +835,12 @@ window.addEventListener('resize', function(){
                         data2=result;
                         wendulist = data2.map(function (item) { return item[0];});
                         wenduvaluelist = data2.map(function (item) {return item[1];});
+                        shiduvaluelist = data2.map(function (item) {return item[2];});
+                        zhengqiyavaluelist = data2.map(function (item) {return item[3];}); 
+                        ludianwenduvaluelist = data2.map(function (item) {return item[4];});
+                        dangdiqiyavaluelist = data2.map(function (item) {return item[5];});
+                        haimianqiyavaluelist = data2.map(function (item) {return item[6];});
+                        dimianwenduvaluelist = data2.map(function (item) {return item[7];});
                     }
 
                 },
@@ -849,126 +849,8 @@ window.addEventListener('resize', function(){
                 }
                 
             };
-      var getting4={
-                type: "get",
-                async: false,
-                url: './qqq7.php?name=<?php echo $location ?>&begin=<?php echo $begin ?>&end=<?php echo $end ?>',
-                data2: {},
-                dataType: "json",
-                success: function(result){
-                    
-                    if(result){
-                        data2=result;
-                        shidulist = data2.map(function (item) { return item[0];});
-                        shiduvaluelist = data2.map(function (item) {return item[1];});
-                    }
+    
 
-                },
-                error: function(errmsg) {
-                    
-                }
-                
-            };
-      var getting5={
-                type: "get",
-                async: false,
-                url: './qqq8.php?name=<?php echo $location ?>&begin=<?php echo $begin ?>&end=<?php echo $end ?>',
-                data2: {},
-                dataType: "json",
-                success: function(result){
-                    
-                    if(result){
-                        data2=result;
-                        zhengqiyalist = data2.map(function (item) { return item[0];});
-                        zhengqiyavaluelist = data2.map(function (item) {return item[1];});
-                    }
-
-                },
-                error: function(errmsg) {
-                    
-                }
-                
-            };
-      var getting6={
-                type: "get",
-                async: false,
-                url: './qqq9.php?name=<?php echo $location ?>&begin=<?php echo $begin ?>&end=<?php echo $end ?>',
-                data2: {},
-                dataType: "json",
-                success: function(result){
-                    
-                    if(result){
-                        data2=result;
-                        ludianwendulist = data2.map(function (item) { return item[0];});
-                        ludianwenduvaluelist = data2.map(function (item) {return item[1];});
-                    }
-
-                },
-                error: function(errmsg) {
-                    
-                }
-                
-            };
-      var getting7={
-                type: "get",
-                async: false,
-                url: './qqq10.php?name=<?php echo $location ?>&begin=<?php echo $begin ?>&end=<?php echo $end ?>',
-                data2: {},
-                dataType: "json",
-                success: function(result){
-                    
-                    if(result){
-                        data2=result;
-                        dangdiqiyalist = data2.map(function (item) { return item[0];});
-                        dangdiqiyavaluelist = data2.map(function (item) {return item[1];});
-                    }
-
-                },
-                error: function(errmsg) {
-                    
-                }
-                
-            };
-      var getting8={
-                type: "get",
-                async: false,
-                url: './qqq11.php?name=<?php echo $location ?>&begin=<?php echo $begin ?>&end=<?php echo $end ?>',
-                data2: {},
-                dataType: "json",
-                success: function(result){
-                    
-                    if(result){
-                        data2=result;
-                        haimianqiyalist = data2.map(function (item) { return item[0];});
-                        haimianqiyavaluelist = data2.map(function (item) {return item[1];});
-                    }
-
-                },
-                error: function(errmsg) {
-                    
-                }
-                
-            };
-      var getting9={
-                type: "get",
-                async: false,
-                url: './qqq12.php?name=<?php echo $location ?>&begin=<?php echo $begin ?>&end=<?php echo $end ?>',
-                data2: {},
-                dataType: "json",
-                success: function(result){
-                    
-                    if(result){
-                        data2=result;
-                        dimianwendulist = data2.map(function (item) { return item[0];});
-                        dimianwenduvaluelist = data2.map(function (item) {return item[1];});
-                    }
-
-                },
-                error: function(errmsg) {
-                    
-                }
-                
-            };
 
     function draw(dateList,valueList,city){
     var dom = document.getElementById('container');
@@ -1402,10 +1284,8 @@ window.addEventListener('resize', function(){
               myChart.setOption(option);
           }
         }
-        draw4(shidulist,shiduvaluelist,"<?php echo $location ?>");
-        setInterval(function setusers() {
-                $.ajax(getting4);
-                draw4(shidulist,shiduvaluelistt,"<?php echo $location ?>");},86400000); 
+      
+        draw4(wendulist,shiduvaluelist,"<?php echo $location ?>");
 
 
 
@@ -1489,10 +1369,9 @@ window.addEventListener('resize', function(){
                   myChart.setOption(option);
               }
             }
-          draw5(zhengqiyalist,zhengqiyavaluelist,"<?php echo $location ?>");
-          setInterval(function setusers() {
-                      $.ajax(getting5);
-                      draw5(zhengqiyalist,zhengqiyavaluelistt,"<?php echo $location ?>");},86400000); 
+         
+          draw5(wendulist,zhengqiyavaluelist,"<?php echo $location ?>");
+          
       
 
 
@@ -1577,10 +1456,9 @@ window.addEventListener('resize', function(){
                   myChart.setOption(option);
               }
             }
-          draw6(ludianwendulist,ludianwenduvaluelist,"<?php echo $location ?>");
-          setInterval(function setusers() {
-                      $.ajax(getting6);
-                      draw6(ludianwendulist,ludianwenduvaluelist,"<?php echo $location ?>");},86400000); 
+          
+          draw6(wendulist,ludianwenduvaluelist,"<?php echo $location ?>");
+         
 
 
       
@@ -1665,10 +1543,8 @@ window.addEventListener('resize', function(){
                   myChart.setOption(option);
               }
             }
-          draw7(dangdiqiyalist,dangdiqiyavaluelist,"<?php echo $location ?>");
-          setInterval(function setusers() {
-                      $.ajax(getting7);
-                      draw7(dangdiqiyalist,dangdiqiyavaluelist,"<?php echo $location ?>");},86400000); 
+          draw7(wendulist,dangdiqiyavaluelist,"<?php echo $location ?>");
+
 
 
 
@@ -1752,10 +1628,8 @@ window.addEventListener('resize', function(){
                   myChart.setOption(option);
               }
             }
-          draw8(haimianqiyalist,haimianqiyavaluelist,"<?php echo $location ?>");
-          setInterval(function setusers() {
-                      $.ajax(getting8);
-                      draw8(haimianqiyalist,haimianqiyavaluelist,"<?php echo $location ?>");},86400000); 
+          draw8(wendulist,haimianqiyavaluelist,"<?php echo $location ?>");
+          
 
 
 
@@ -1840,10 +1714,9 @@ window.addEventListener('resize', function(){
                   myChart.setOption(option);
               }
             }
-          draw9(dimianwendulist,dimianwenduvaluelist,"<?php echo $location ?>");
-          setInterval(function setusers() {
-                      $.ajax(getting9);
-                      draw9(dimianwendulist,dimianwenduvaluelist,"<?php echo $location ?>");},86400000); 
+          
+          draw9(wendulist,dimianwenduvaluelist,"<?php echo $location ?>");
+
 
       </script>
       <script>

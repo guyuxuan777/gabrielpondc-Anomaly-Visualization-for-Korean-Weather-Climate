@@ -887,9 +887,36 @@ window.addEventListener('resize', function(){
           }
             }
         ],
+        dataZoom: [{
+                  textStyle: {
+                      color: '#8392A5'
+                  },
+                  start:0,
+                  xAxisIndex: [0], // 对应网格的索引
+                  handleIcon: 'M10.7,11.9v-1.3H9.3v1.3c-4.9,0.3-8.8,4.4-8.8,9.4c0,5,3.9,9.1,8.8,9.4v1.3h1.3v-1.3c4.9-0.3,8.8-4.4,8.8-9.4C19.5,16.3,15.6,12.2,10.7,11.9z M13.3,24.4H6.7V23h6.6V24.4z M13.3,19.6H6.7v-1.4h6.6V19.6z',
+                  handleSize: '50%',
+                  left:"center",                           //组件离容器左侧的距离,'left', 'center', 'right','20%'
+                  top:"90%",                                //组件离容器上侧的距离,'top', 'middle', 'bottom','20%'
+                  right:"auto",                             //组件离容器右侧的距离,'20%'
+                  bottom:"auto",
+                  orient:"horizontal",
+                  dataBackground: {
+                      areaStyle: {
+                          color: '#8392A5'
+                      },
+                      lineStyle: {
+                          opacity: 0.8,
+                          color: '#8392A5'
+                      }
+                  }
+              }, {
+                  zoomOnMouseWheel:true,                   //如何触发缩放。可选值为：true：表示不按任何功能键，鼠标滚轮能触发缩放。false：表示鼠标滚轮不能触发缩放。'shift'：表示按住 shift 和鼠标滚轮能触发缩放。'ctrl'：表示按住 ctrl 和鼠标滚轮能触发缩放。'alt'：表示按住 alt 和鼠标滚轮能触发缩放。
+                  moveOnMouseMove:true,
+                  type: 'inside'
+              }],
         series: [
           {
-            name: '이상 값이',
+            name: '점수',
             type: 'line',
             data: valueList,
             markPoint: {
@@ -971,6 +998,33 @@ window.addEventListener('resize', function(){
           tooltip: {
             trigger: 'axis'
           },
+        dataZoom: [{
+                  textStyle: {
+                      color: '#8392A5'
+                  },
+                  start:20,
+                  xAxisIndex: [0], // 对应网格的索引
+                  handleIcon: 'M10.7,11.9v-1.3H9.3v1.3c-4.9,0.3-8.8,4.4-8.8,9.4c0,5,3.9,9.1,8.8,9.4v1.3h1.3v-1.3c4.9-0.3,8.8-4.4,8.8-9.4C19.5,16.3,15.6,12.2,10.7,11.9z M13.3,24.4H6.7V23h6.6V24.4z M13.3,19.6H6.7v-1.4h6.6V19.6z',
+                  handleSize: '50%',
+                  left:"center",                           //组件离容器左侧的距离,'left', 'center', 'right','20%'
+                  top:"90%",                                //组件离容器上侧的距离,'top', 'middle', 'bottom','20%'
+                  right:"auto",                             //组件离容器右侧的距离,'20%'
+                  bottom:"auto",
+                  orient:"horizontal",
+                  dataBackground: {
+                      areaStyle: {
+                          color: '#8392A5'
+                      },
+                      lineStyle: {
+                          opacity: 0.8,
+                          color: '#8392A5'
+                      }
+                  }
+              }, {
+                  zoomOnMouseWheel:true,                   //如何触发缩放。可选值为：true：表示不按任何功能键，鼠标滚轮能触发缩放。false：表示鼠标滚轮不能触发缩放。'shift'：表示按住 shift 和鼠标滚轮能触发缩放。'ctrl'：表示按住 ctrl 和鼠标滚轮能触发缩放。'alt'：表示按住 alt 和鼠标滚轮能触发缩放。
+                  moveOnMouseMove:true,
+                  type: 'inside'
+              }],
         xAxis: {
           
           data: ['서울', '인천','서산','보령', '전주','광주','목포', '제주','여수','부산', '울산','대구','구미', '안동','영덕','태백', '충주','원주','대전'],
@@ -996,6 +1050,7 @@ window.addEventListener('resize', function(){
       ]
     };
         myChart.setOption(option);
+        myChart.group='weather';
         
         
     }
@@ -1104,9 +1159,36 @@ window.addEventListener('resize', function(){
                 }
                   }
               ],
+              dataZoom: [{
+                        textStyle: {
+                            color: '#8392A5'
+                        },
+                        start:0,
+                        xAxisIndex: [0], // 对应网格的索引
+                        handleIcon: 'M10.7,11.9v-1.3H9.3v1.3c-4.9,0.3-8.8,4.4-8.8,9.4c0,5,3.9,9.1,8.8,9.4v1.3h1.3v-1.3c4.9-0.3,8.8-4.4,8.8-9.4C19.5,16.3,15.6,12.2,10.7,11.9z M13.3,24.4H6.7V23h6.6V24.4z M13.3,19.6H6.7v-1.4h6.6V19.6z',
+                        handleSize: '50%',
+                        left:"center",                           //组件离容器左侧的距离,'left', 'center', 'right','20%'
+                        top:"90%",                                //组件离容器上侧的距离,'top', 'middle', 'bottom','20%'
+                        right:"auto",                             //组件离容器右侧的距离,'20%'
+                        bottom:"auto",
+                        orient:"horizontal",
+                        dataBackground: {
+                            areaStyle: {
+                                color: '#8392A5'
+                            },
+                            lineStyle: {
+                                opacity: 0.8,
+                                color: '#8392A5'
+                            }
+                        }
+                    }, {
+                        zoomOnMouseWheel:true,                   //如何触发缩放。可选值为：true：表示不按任何功能键，鼠标滚轮能触发缩放。false：表示鼠标滚轮不能触发缩放。'shift'：表示按住 shift 和鼠标滚轮能触发缩放。'ctrl'：表示按住 ctrl 和鼠标滚轮能触发缩放。'alt'：表示按住 alt 和鼠标滚轮能触发缩放。
+                        moveOnMouseMove:true,
+                        type: 'inside'
+                    }],
               series: [
                 {
-                  name: '이상 값이',
+                  name: '기온(°C)',
                   type: 'line',
                   data: wenduvaluelist,
                   markPoint: {
@@ -1160,9 +1242,36 @@ window.addEventListener('resize', function(){
                 }
                   }
               ],
+              dataZoom: [{
+                        textStyle: {
+                            color: '#8392A5'
+                        },
+                        start:0,
+                        xAxisIndex: [0], // 对应网格的索引
+                        handleIcon: 'M10.7,11.9v-1.3H9.3v1.3c-4.9,0.3-8.8,4.4-8.8,9.4c0,5,3.9,9.1,8.8,9.4v1.3h1.3v-1.3c4.9-0.3,8.8-4.4,8.8-9.4C19.5,16.3,15.6,12.2,10.7,11.9z M13.3,24.4H6.7V23h6.6V24.4z M13.3,19.6H6.7v-1.4h6.6V19.6z',
+                        handleSize: '50%',
+                        left:"center",                           //组件离容器左侧的距离,'left', 'center', 'right','20%'
+                        top:"90%",                                //组件离容器上侧的距离,'top', 'middle', 'bottom','20%'
+                        right:"auto",                             //组件离容器右侧的距离,'20%'
+                        bottom:"auto",
+                        orient:"horizontal",
+                        dataBackground: {
+                            areaStyle: {
+                                color: '#8392A5'
+                            },
+                            lineStyle: {
+                                opacity: 0.8,
+                                color: '#8392A5'
+                            }
+                        }
+                    }, {
+                        zoomOnMouseWheel:true,                   //如何触发缩放。可选值为：true：表示不按任何功能键，鼠标滚轮能触发缩放。false：表示鼠标滚轮不能触发缩放。'shift'：表示按住 shift 和鼠标滚轮能触发缩放。'ctrl'：表示按住 ctrl 和鼠标滚轮能触发缩放。'alt'：表示按住 alt 和鼠标滚轮能触发缩放。
+                        moveOnMouseMove:true,
+                        type: 'inside'
+                    }],
               series: [
                 {
-                  name: '이상 값이',
+                  name: '습도(%)',
                   type: 'line',
                   data: shiduvaluelist,
                   markPoint: {
@@ -1219,9 +1328,36 @@ window.addEventListener('resize', function(){
                     }
                       }
                   ],
+                  dataZoom: [{
+                            textStyle: {
+                                color: '#8392A5'
+                            },
+                            start:0,
+                            xAxisIndex: [0], // 对应网格的索引
+                            handleIcon: 'M10.7,11.9v-1.3H9.3v1.3c-4.9,0.3-8.8,4.4-8.8,9.4c0,5,3.9,9.1,8.8,9.4v1.3h1.3v-1.3c4.9-0.3,8.8-4.4,8.8-9.4C19.5,16.3,15.6,12.2,10.7,11.9z M13.3,24.4H6.7V23h6.6V24.4z M13.3,19.6H6.7v-1.4h6.6V19.6z',
+                            handleSize: '50%',
+                            left:"center",                           //组件离容器左侧的距离,'left', 'center', 'right','20%'
+                            top:"90%",                                //组件离容器上侧的距离,'top', 'middle', 'bottom','20%'
+                            right:"auto",                             //组件离容器右侧的距离,'20%'
+                            bottom:"auto",
+                            orient:"horizontal",
+                            dataBackground: {
+                                areaStyle: {
+                                    color: '#8392A5'
+                                },
+                                lineStyle: {
+                                    opacity: 0.8,
+                                    color: '#8392A5'
+                                }
+                            }
+                        }, {
+                            zoomOnMouseWheel:true,                   //如何触发缩放。可选值为：true：表示不按任何功能键，鼠标滚轮能触发缩放。false：表示鼠标滚轮不能触发缩放。'shift'：表示按住 shift 和鼠标滚轮能触发缩放。'ctrl'：表示按住 ctrl 和鼠标滚轮能触发缩放。'alt'：表示按住 alt 和鼠标滚轮能触发缩放。
+                            moveOnMouseMove:true,
+                            type: 'inside'
+                        }],
                   series: [
                     {
-                      name: '이상 값이',
+                      name: '증기압(hPa)',
                       type: 'line',
                       data: zhengqiyavaluelist,
                       markPoint: {
@@ -1280,9 +1416,36 @@ window.addEventListener('resize', function(){
                     }
                       }
                   ],
+                  dataZoom: [{
+                            textStyle: {
+                                color: '#8392A5'
+                            },
+                            start:0,
+                            xAxisIndex: [0], // 对应网格的索引
+                            handleIcon: 'M10.7,11.9v-1.3H9.3v1.3c-4.9,0.3-8.8,4.4-8.8,9.4c0,5,3.9,9.1,8.8,9.4v1.3h1.3v-1.3c4.9-0.3,8.8-4.4,8.8-9.4C19.5,16.3,15.6,12.2,10.7,11.9z M13.3,24.4H6.7V23h6.6V24.4z M13.3,19.6H6.7v-1.4h6.6V19.6z',
+                            handleSize: '50%',
+                            left:"center",                           //组件离容器左侧的距离,'left', 'center', 'right','20%'
+                            top:"90%",                                //组件离容器上侧的距离,'top', 'middle', 'bottom','20%'
+                            right:"auto",                             //组件离容器右侧的距离,'20%'
+                            bottom:"auto",
+                            orient:"horizontal",
+                            dataBackground: {
+                                areaStyle: {
+                                    color: '#8392A5'
+                                },
+                                lineStyle: {
+                                    opacity: 0.8,
+                                    color: '#8392A5'
+                                }
+                            }
+                        }, {
+                            zoomOnMouseWheel:true,                   //如何触发缩放。可选值为：true：表示不按任何功能键，鼠标滚轮能触发缩放。false：表示鼠标滚轮不能触发缩放。'shift'：表示按住 shift 和鼠标滚轮能触发缩放。'ctrl'：表示按住 ctrl 和鼠标滚轮能触发缩放。'alt'：表示按住 alt 和鼠标滚轮能触发缩放。
+                            moveOnMouseMove:true,
+                            type: 'inside'
+                        }],
                   series: [
                     {
-                      name: '이상 값이',
+                      name: '이슬점온도(°C)',
                       type: 'line',
                       data: ludianwenduvaluelist,
                       markPoint: {
@@ -1341,9 +1504,36 @@ window.addEventListener('resize', function(){
                     }
                       }
                   ],
+                  dataZoom: [{
+                            textStyle: {
+                                color: '#8392A5'
+                            },
+                            start:0,
+                            xAxisIndex: [0], // 对应网格的索引
+                            handleIcon: 'M10.7,11.9v-1.3H9.3v1.3c-4.9,0.3-8.8,4.4-8.8,9.4c0,5,3.9,9.1,8.8,9.4v1.3h1.3v-1.3c4.9-0.3,8.8-4.4,8.8-9.4C19.5,16.3,15.6,12.2,10.7,11.9z M13.3,24.4H6.7V23h6.6V24.4z M13.3,19.6H6.7v-1.4h6.6V19.6z',
+                            handleSize: '50%',
+                            left:"center",                           //组件离容器左侧的距离,'left', 'center', 'right','20%'
+                            top:"90%",                                //组件离容器上侧的距离,'top', 'middle', 'bottom','20%'
+                            right:"auto",                             //组件离容器右侧的距离,'20%'
+                            bottom:"auto",
+                            orient:"horizontal",
+                            dataBackground: {
+                                areaStyle: {
+                                    color: '#8392A5'
+                                },
+                                lineStyle: {
+                                    opacity: 0.8,
+                                    color: '#8392A5'
+                                }
+                            }
+                        }, {
+                            zoomOnMouseWheel:true,                   //如何触发缩放。可选值为：true：表示不按任何功能键，鼠标滚轮能触发缩放。false：表示鼠标滚轮不能触发缩放。'shift'：表示按住 shift 和鼠标滚轮能触发缩放。'ctrl'：表示按住 ctrl 和鼠标滚轮能触发缩放。'alt'：表示按住 alt 和鼠标滚轮能触发缩放。
+                            moveOnMouseMove:true,
+                            type: 'inside'
+                        }],
                   series: [
                     {
-                      name: '이상 값이',
+                      name: '현지기압(hPa)',
                       type: 'line',
                       data: wenduvaluelist,
                       markPoint: {
@@ -1400,6 +1590,33 @@ window.addEventListener('resize', function(){
                     }
                       }
                   ],
+                  dataZoom: [{
+                            textStyle: {
+                                color: '#8392A5'
+                            },
+                            start:0,
+                            xAxisIndex: [0], // 对应网格的索引
+                            handleIcon: 'M10.7,11.9v-1.3H9.3v1.3c-4.9,0.3-8.8,4.4-8.8,9.4c0,5,3.9,9.1,8.8,9.4v1.3h1.3v-1.3c4.9-0.3,8.8-4.4,8.8-9.4C19.5,16.3,15.6,12.2,10.7,11.9z M13.3,24.4H6.7V23h6.6V24.4z M13.3,19.6H6.7v-1.4h6.6V19.6z',
+                            handleSize: '50%',
+                            left:"center",                           //组件离容器左侧的距离,'left', 'center', 'right','20%'
+                            top:"90%",                                //组件离容器上侧的距离,'top', 'middle', 'bottom','20%'
+                            right:"auto",                             //组件离容器右侧的距离,'20%'
+                            bottom:"auto",
+                            orient:"horizontal",
+                            dataBackground: {
+                                areaStyle: {
+                                    color: '#8392A5'
+                                },
+                                lineStyle: {
+                                    opacity: 0.8,
+                                    color: '#8392A5'
+                                }
+                            }
+                        }, {
+                            zoomOnMouseWheel:true,                   //如何触发缩放。可选值为：true：表示不按任何功能键，鼠标滚轮能触发缩放。false：表示鼠标滚轮不能触发缩放。'shift'：表示按住 shift 和鼠标滚轮能触发缩放。'ctrl'：表示按住 ctrl 和鼠标滚轮能触发缩放。'alt'：表示按住 alt 和鼠标滚轮能触发缩放。
+                            moveOnMouseMove:true,
+                            type: 'inside'
+                        }],
                   series: [
                     {
                       name: '이상 값이',
@@ -1489,7 +1706,7 @@ window.addEventListener('resize', function(){
                         }],
                   series: [
                     {
-                      name: '이상 값이',
+                      name: '지면온도(°C)',
                       type: 'line',
                       data: wenduvaluelist,
                       markPoint: {

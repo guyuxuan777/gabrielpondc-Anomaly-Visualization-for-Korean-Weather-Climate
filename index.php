@@ -860,6 +860,8 @@ window.addEventListener('resize', function(){
     });
     var app = {};
     var option;
+    var max = Math.max.apply(null, valueList);
+    var min = Math.min.apply(null, valueList);
     // prettier-ignore
     option = {
 
@@ -887,6 +889,19 @@ window.addEventListener('resize', function(){
           }
             }
         ],
+        
+        visualMap: {
+        show:false, 
+        splitNumber : 9,
+        min: min, 
+        max: max,
+        inRange: {
+          color: ['lightskyblue','#5470c6', 'yellow', 'orangered','#AC3B2A']
+        },
+        outOfRange: {
+          color: '#999'
+        }
+      },
         dataZoom: [{
                   textStyle: {
                       color: '#8392A5'
@@ -998,6 +1013,7 @@ window.addEventListener('resize', function(){
           tooltip: {
             trigger: 'axis'
           },
+
         dataZoom: [{
                   textStyle: {
                       color: '#8392A5'
@@ -1050,7 +1066,6 @@ window.addEventListener('resize', function(){
       ]
     };
         myChart.setOption(option);
-        myChart.group='weather';
         
         
     }

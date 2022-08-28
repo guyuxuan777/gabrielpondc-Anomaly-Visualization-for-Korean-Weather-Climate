@@ -21,12 +21,14 @@ $result = mysqli_query($dbc,$sql);
 $arr=mysqli_fetch_all($result);
 
 $arrayavg= array();
+$dayavg=array();
 for ($i=0;$i<count($arr)/24;$i++){
     $sum=0;
     for ($j=0;$j<24;$j++){
-        $sum=$sum+$arr[$j+($i*24)][0];
+      $sum+=$arr[$j+($i*24)][0];
+      $dayavg[]=$arr[$j+($i*24)][0];
     }
     $arrayavg[]= $sum/24;
   }
-print_r ($arrayavg);
+  print_r($dayavg)
 ?>

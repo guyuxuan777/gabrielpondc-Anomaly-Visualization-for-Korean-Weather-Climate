@@ -1,7 +1,7 @@
 <?php 
-ini_set("max_execution_time",10000);
+ini_set("max_execution_time",1000000000);
 $set_charset = 'export LANG=ko_KR.UTF-8;';
-set_time_limit(10000);
+set_time_limit(1000000000);
 $name=$_GET['name'];
 $begin=$_GET['begin'];
 $end=$_GET['end'];

@@ -1,4 +1,6 @@
 <?php
+ini_set("max_execution_time",1000000000);
+set_time_limit(1000000000);
 DEFINE ('DB_USER','root');
 DEFINE ('DB_PASSWORD','caucse1234');
 DEFINE ('DB_HOST','localhost');
@@ -783,6 +785,11 @@ window.addEventListener('resize', function(){
 });
         </script>
    <script type="text/javascript">
+    function sleep(ms){
+   var start=Date.now(),end = start+ms;
+   while(Date.now() < end);
+   return;
+};
     var btn2;
     var btn3;
     var city='Loading';
@@ -825,7 +832,8 @@ window.addEventListener('resize', function(){
             };
     var getting3={
                 type: "get",
-                async: false,
+                async: true,
+                timeout: 10000000,
                 url: './qqq6.php?name=<?php echo $location ?>&begin=<?php echo $begin ?>&end=<?php echo $end ?>',
                 data2: {},
                 dataType: "json",
@@ -845,7 +853,17 @@ window.addEventListener('resize', function(){
 
                 },
                 error: function(errmsg) {
-                    
+                  if(errmsg){
+                    data2=errmsg;
+                    wendulist = data2.map(function (item) { return item[0];});
+                    wenduvaluelist = data2.map(function (item) {return item[1];});
+                    shiduvaluelist = data2.map(function (item) {return item[2];});
+                    zhengqiyavaluelist = data2.map(function (item) {return item[3];}); 
+                    ludianwenduvaluelist = data2.map(function (item) {return item[4];});
+                    dangdiqiyavaluelist = data2.map(function (item) {return item[5];});
+                    haimianqiyavaluelist = data2.map(function (item) {return item[6];});
+                    dimianwenduvaluelist = data2.map(function (item) {return item[7];});
+                }
                 }
                 
             };
@@ -962,7 +980,7 @@ window.addEventListener('resize', function(){
         };
     <?php 
     if ($begin) {
-      echo "$.ajax(getting);";
+      echo "$.ajax(getting3); $.ajax(getting);";
       echo "draw(dateList,valueList,'".$location."');";
     }else{
       echo "draw(['0000-00-00'],[0],city);";
@@ -979,6 +997,7 @@ window.addEventListener('resize', function(){
     draw(dateList,valueList,"<?php echo $location ?>");
     setInterval(function setusers() {
                 $.ajax(getting);
+                $.ajax(getting3);
                 draw(dateList,valueList,"<?php echo $location ?>");},86400000);
    
     function acc(){
@@ -1220,8 +1239,8 @@ window.addEventListener('resize', function(){
               myChart.group='weather';
           }
         }
-        $.ajax(getting3);
-        draw3(wendulist,wenduvaluelist,"<?php echo $location ?>");
+        
+        
     function draw4(wendulist,shiduvaluelist,city){
           var dom = document.getElementById('container4');
           var myChart = echarts.init(dom, null, {
@@ -1303,8 +1322,7 @@ window.addEventListener('resize', function(){
               myChart.group='weather';
           }
         }
-      
-        draw4(wendulist,shiduvaluelist,"<?php echo $location ?>");
+
 
 
 
@@ -1389,8 +1407,7 @@ window.addEventListener('resize', function(){
                   myChart.group='weather';
               }
             }
-         
-          draw5(wendulist,zhengqiyavaluelist,"<?php echo $location ?>");
+
           
       
 
@@ -1477,8 +1494,7 @@ window.addEventListener('resize', function(){
                   myChart.group='weather';
               }
             }
-          
-          draw6(wendulist,ludianwenduvaluelist,"<?php echo $location ?>");
+
          
 
 
@@ -1565,7 +1581,7 @@ window.addEventListener('resize', function(){
                   myChart.group='weather';
               }
             }
-          draw7(wendulist,dangdiqiyavaluelist,"<?php echo $location ?>");
+
 
 
 
@@ -1651,7 +1667,7 @@ window.addEventListener('resize', function(){
                   myChart.group='weather';
               }
             }
-          draw8(wendulist,haimianqiyavaluelist,"<?php echo $location ?>");
+
           
 
 
@@ -1738,9 +1754,24 @@ window.addEventListener('resize', function(){
                   myChart.group='weather';
               }
             }
-          
+          setInterval(redraw, 1000);
+          function redraw(){
+          draw3(wendulist,wenduvaluelist,"<?php echo $location ?>");
+          draw4(wendulist,shiduvaluelist,"<?php echo $location ?>");
+          draw5(wendulist,zhengqiyavaluelist,"<?php echo $location ?>");
+          draw6(wendulist,ludianwenduvaluelist,"<?php echo $location ?>");
+          draw7(wendulist,dangdiqiyavaluelist,"<?php echo $location ?>");
+          draw8(wendulist,haimianqiyavaluelist,"<?php echo $location ?>");
           draw9(wendulist,dimianwenduvaluelist,"<?php echo $location ?>");
-          echarts.connect('weather')
+          };
+          draw3(wendulist,wenduvaluelist,"<?php echo $location ?>");
+          draw4(wendulist,shiduvaluelist,"<?php echo $location ?>");
+          draw5(wendulist,zhengqiyavaluelist,"<?php echo $location ?>");
+          draw6(wendulist,ludianwenduvaluelist,"<?php echo $location ?>");
+          draw7(wendulist,dangdiqiyavaluelist,"<?php echo $location ?>");
+          draw8(wendulist,haimianqiyavaluelist,"<?php echo $location ?>");
+          draw9(wendulist,dimianwenduvaluelist,"<?php echo $location ?>");
+          echarts.connect('weather');
 
       </script>
       <script>

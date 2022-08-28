@@ -1,4 +1,0 @@
-Traceback (most recent call last):
-  File "/media/ubuntu/Newdisk/xyo/admin/aacc_80/wwwroot/cha.py", line 52, in <module>
-    res=json_data['printResultListL']
-KeyError: 'printResultListL'
